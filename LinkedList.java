@@ -1,4 +1,4 @@
-//accesses the Node class
+//Linkedlist basic operations, single linked list
 public class LinkedList {
     Node head;
 
@@ -94,6 +94,7 @@ public class LinkedList {
         prev.next = pointer.next;
     }
 
+    //delete nodes at specific positions
     public void deleteNodePosition(int position) {
         //create two pointers
         Node pointer = head;
