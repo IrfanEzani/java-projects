@@ -1,3 +1,6 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 //has reverse method using stack data structure
 public class stackPractice {
     /*
@@ -20,8 +23,8 @@ public class stackPractice {
             return (top < 0);
         }
 
-        //add element to the topmost of stack, pre-increment the 
-        //stack as the value starts at -1.
+        // add element to the topmost of stack, pre-increment the
+        // stack as the value starts at -1.
         public boolean push(char c) {
             // stack overflow case handling
             if (top >= size) {
@@ -31,7 +34,7 @@ public class stackPractice {
             return true;
         }
 
-        //remove topmost element, post-decrement the stack.
+        // remove topmost element, post-decrement the stack.
         public char pop() {
             // stack underflow case handling
             if (top < 0) {
@@ -58,10 +61,50 @@ public class stackPractice {
         return reversed;
     }
 
+    static boolean balancedBrackets(String str) {
+        Deque<Character> charStack = new ArrayDeque<Character>();
+        for (int i = 0; i < str.length(); i++) {
+            char x = str.charAt(i);
+            // Push the element in the stack
+            if (x == '(' || x == '[' || x == '{') {
+                charStack.push(x);
+                continue;
+            }
+            if (charStack.isEmpty()) {
+                return false;
+            }
+            char check;
+            switch (x) {
+                case ')':
+                    check = charStack.pop();
+                    if (check == ']' || check == '}')
+                        return false;
+                    break;
+
+                case '}':
+                    check = charStack.pop();
+                    if (check == '(' || check == '[')
+                        return false;
+                    break;
+
+                case ']':
+                    check = charStack.pop();
+                    if (check == '(' || check == '{')
+                        return false;
+                    break;
+            }
+        }
+        return (charStack.isEmpty());
+    }
+
     public static void main(String[] args) {
         stackPractice s = new stackPractice();
         String str = "hewlett-packard";
-        System.out.println("reverse version of string " + str + " is:" + 
-        s.reverse(str));
+        System.out.println("reverse version of string " + str + " is:" +
+                s.reverse(str));
+
+        String brackets = "([{}])}";
+        String x = (balancedBrackets(brackets)) ? "Balanced" : "Unbalanced";
+        System.out.println(x);
     }
 }
