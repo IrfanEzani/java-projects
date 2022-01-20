@@ -6,8 +6,9 @@ public class rentCalculator {
     public static void main(String[] args) {
         double rentPrice = 4750;
         double utilities= 50;
-        double houseTotal = rentPrice + (utilities*6);
         double roomA, roomB, roomC, roomD;
+        int tenant = 6;
+        double houseTotal = rentPrice + (utilities*tenant);
         double aRatio = 4.25, bRatio = 4, cRatio = 3.5, dRatio = 3.25;
         double totalRatio = (aRatio*2) + (bRatio*3) + cRatio + dRatio;
 
@@ -20,26 +21,24 @@ public class rentCalculator {
         System.out.println("roomB = " + (int) roomB);
         System.out.println("roomC = " + (int) roomC);
         System.out.println("roomD = " + (int) roomD);
-        roomD /= 6;
+        roomD /= tenant;
         System.out.println("roomA with utilities and D = " + (int)(roomA+roomD));
         System.out.println("roomB with utilities and D = " + (int)(roomB+roomD));
         System.out.println("roomC with utilities and D = " + (int)(roomC+roomD));
-        System.out.println("houseTotal = " + houseTotal);
+        System.out.println("houseTotal = " + (int) houseTotal);
 
         System.out.println("left:" + (int)((houseTotal - 
-        ((roomA * 2)) -
-        ((roomB * 3)) - 
-        (roomC) - (roomD * 6))
-        ));
+        ((roomA * 2)) - ((roomB * 3)) - (roomC) - (roomD * tenant))
+        )); 
         
-        /* Scanner s = new Scanner(System.in);
+        /*Scanner s = new Scanner(System.in);
         System.out.println("set room A price:");
         roomA = s.nextDouble();
         System.out.println("set room B price:");
         roomB = s.nextDouble();
         System.out.println("set room C price:");
         roomC = s.nextDouble();
-        /* System.out.println("set room D price:");
+        System.out.println("set room D price:");
         roomD = s.nextDouble(); 
 
         roomA *= 2;
